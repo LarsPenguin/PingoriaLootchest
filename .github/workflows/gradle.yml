@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,16 +18,25 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
+        cache: gradle
     
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build --info
     
     - name: Upload JAR artifacts
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: PingoriaLootchest-Build
-        path: build/libs/
+        path: build/libs/*.jar
         retention-days: 30
+    
+    - name: Upload Build Logs on Failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: Build-Logs
+        path: build/reports/
