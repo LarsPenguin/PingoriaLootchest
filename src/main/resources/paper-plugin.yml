@@ -6,4 +6,4 @@ main: com.pingoria.pingorialootchest.PingoriaLootchest
 authors:
   - LarsPenguin
 
-api-version: "1.21"
+api-version: "1.21.11"
