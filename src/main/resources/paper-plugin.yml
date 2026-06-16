@@ -1,0 +1,9 @@
+name: PingoriaLootchest
+version: "${project.version}"
+description: A loot chest plugin for PaperMC
+main: com.pingoria.pingorialootchest.PingoriaLootchest
+
+authors:
+  - LarsPenguin
+
+api-version: "1.21"
